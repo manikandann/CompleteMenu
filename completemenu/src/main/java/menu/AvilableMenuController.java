@@ -19,7 +19,13 @@ public class AvilableMenuController {
     @RequestMapping("/itemview")
     public AvilableMenu itemView(@RequestParam(value="itemId") int itemId) {
     	AvilableMenu e =new AvilableMenu(itemId);
-    	return avilableMenuDao.getItem(e);
+    	try{
+    	avilableMenuDao.getItem(e);
+    	}
+    	catch(Exception ex){
+    		System.out.println("Exception occured "+ ex);
+    	}
+    	return new AvilableMenu(itemId);
     	
     }
     @RequestMapping("/itemdelete")
